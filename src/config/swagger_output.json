@@ -460,6 +460,19 @@
           }
         ]
       }
+    },
+    "/reports/": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {
