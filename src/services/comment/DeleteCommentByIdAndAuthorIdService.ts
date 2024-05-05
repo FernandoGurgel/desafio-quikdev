@@ -23,9 +23,14 @@ class DeleteCommentByIdAndAuthorIdService {
         if (comment.userId.id !== parseInt(data.authorId) && post.userId.id !== parseInt(data.authorId)) {
             throw new AppError('You do not have permission to delete this comment');
         }
+        if (comment.userId.id === parseInt(data.authorId)){
+            comment.description = 'Message deleted by the user';
+        }
+        if (post.userId.id === parseInt(data.authorId)){
+            comment.description = 'Message deleted by the author';
+        }
 
-
-        await repository.remove(comment);
+        await repository.save(comment);
 
         return {message: 'Comment deleted successfully'};
 
