@@ -13,6 +13,6 @@ export class User {
     email: string;
 
     @ManyToOne(() => User)
-    @JoinColumn()
+    @JoinColumn({ name: 'userEditor' })
     editorUser: User;
 }
