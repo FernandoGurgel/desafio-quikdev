@@ -1,12 +1,20 @@
-services: 
-  db:
-    container_name: quikdev-db
-    image: postgres 
-    restart: always 
-    environment: 
-      POSTGRES_PASSWORD: fg2020 
-      POSTGRES_USER: postgres 
-      POSTGRES_DB: quikdev
+version: '3'
+services:
+  quikdev-backend:
+    image: quikdev-backend
     ports:
-      - "5432:5432"
-    
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/quikdev
+  db:
+    image: postgres:13
+    environment:
+        - POSTGRES_PASSWORD=fg2020
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=quikdev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+volumes:
+  postgres_data:

@@ -1,0 +1,12 @@
+services: 
+  db:
+    container_name: quikdev-db
+    image: postgres 
+    restart: always 
+    environment: 
+      POSTGRES_PASSWORD: fg2020 
+      POSTGRES_USER: postgres 
+      POSTGRES_DB: quikdev
+    ports:
+      - "5432:5432"
+    
