@@ -1,9 +1,9 @@
 import {Request, Response, Router} from 'express';
-import CreateUserService from "../services/CreateUserService";
-import UpdateUserService from "../services/UpdateUserService";
-import DeleteUserService from "../services/DeleteUserService";
+import CreateUserService from "../services/user/CreateUserService";
+import UpdateUserService from "../services/user/UpdateUserService";
+import DeleteUserService from "../services/user/DeleteUserService";
 import authenticate from "../middlewares/Authenticate";
-import GetAllUsersService from "../services/GetAllUsersService";
+import GetAllUsersService from "../services/user/GetAllUsersService";
 
 
 export const userRouter = Router();

@@ -1,9 +1,9 @@
-import {User} from "../entity/User";
+import {User} from "../../entity/User";
 import { getRepository } from 'typeorm';
-import authConfig from '../config/Auth';
+import authConfig from '../../config/Auth';
 import { sign } from 'jsonwebtoken'
-import AppError from "../erros/AppError";
-import {EmailValid, IsEmailNotNull} from "../utils/Validations";
+import AppError from "../../erros/AppError";
+import {EmailValid, IsEmailNotNull} from "../../utils/Validations";
 
 interface UserDTO {
     email: string;

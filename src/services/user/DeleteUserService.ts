@@ -1,6 +1,6 @@
 import {getRepository} from "typeorm";
-import {User} from "../entity/User";
-import AppError from "../erros/AppError";
+import {User} from "../../entity/User";
+import AppError from "../../erros/AppError";
 
 class DeleteUserService {
     public async execute(id: string): Promise<any> {

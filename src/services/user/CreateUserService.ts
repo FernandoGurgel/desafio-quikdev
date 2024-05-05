@@ -1,7 +1,7 @@
-import AppError from "../erros/AppError";
+import AppError from "../../erros/AppError";
 import {getRepository} from "typeorm";
-import {User} from "../entity/User";
-import {EmailValid} from "../utils/Validations";
+import {User} from "../../entity/User";
+import {EmailValid} from "../../utils/Validations";
 
 interface IUserDTO {
     email: string;
