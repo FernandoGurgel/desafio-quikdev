@@ -1,8 +1,9 @@
 import {User} from "../entity/User";
 import { getRepository } from 'typeorm';
-import authConfig from '../config/auth';
+import authConfig from '../config/Auth';
 import { sign } from 'jsonwebtoken'
 import AppError from "../erros/AppError";
+import {EmailValid, IsEmailNotNull} from "../utils/Validations";
 
 interface UserDTO {
     email: string;
@@ -36,12 +37,8 @@ class AuthenticateUserService {
   }
 
   private validEmailRecive(data: UserDTO) {
-    if (!data.email) {
-      throw new AppError('Email is required');
-    }
-    if (!data.email.includes('@')) {
-      throw new AppError('Invalid email');
-    }
+    IsEmailNotNull(data.email);
+    EmailValid(data.email);
   }
 }
 

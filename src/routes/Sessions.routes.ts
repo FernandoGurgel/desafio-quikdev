@@ -4,9 +4,12 @@ import AuthenticateUserService from "../services/AuthenticateUserService";
 export const sessionRouter = Router();
 
 sessionRouter.post('/', async (req: Request, res: Response) => {
+    /**
+     #swagger.tags = ['Auth']
+     */
     const {email} = req.body;
-    const validateUserService = new AuthenticateUserService();
-    const response = await validateUserService.execute({email});
+    const authenticateUserService = new AuthenticateUserService();
+    const response = await authenticateUserService.execute({email});
     return res.json(response)
 });
 

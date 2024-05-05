@@ -10,7 +10,7 @@
       "start": "ts-node src/index.ts",
       "typeorm:run": "ts-node-dev ./node_modules/typeorm/cli.js migration:run",
       "typeorm:create": "ts-node-dev ./node_modules/typeorm/cli.js migration:create -n",
-      "swagger:genarate": "ts-node src/config/swagger.ts"
+      "swagger:genarate": "ts-node src/config/Swagger.ts"
    },
    "dependencies": {
       "body-parser": "^1.20.2",
