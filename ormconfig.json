@@ -3,6 +3,7 @@
    "host": "localhost",
    "port": 5432,
    "username": "postgres",
+   "schema": "quickdev",
    "password": "fg2020",
    "database": "quikdev",
    "synchronize": true,
