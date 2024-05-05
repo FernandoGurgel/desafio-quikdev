@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne} from "typeorm";
 
 @Entity('user')
 export class User {
@@ -11,4 +11,8 @@ export class User {
 
     @Column({length:"191"})
     email: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn()
+    editorUser: User;
 }

@@ -3,6 +3,8 @@ import CreateUserService from "../services/CreateUserService";
 import UpdateUserService from "../services/UpdateUserService";
 import DeleteUserService from "../services/DeleteUserService";
 import authenticate from "../middlewares/Authenticate";
+import GetAllUsersService from "../services/GetAllUsersService";
+
 
 export const userRouter = Router();
 
@@ -25,8 +27,10 @@ userRouter.put('/:id', authenticate, async (req: Request, res: Response) => {
         */
     const {email, name} = req.body;
     const id = req.params.id;
+    // @ts-ignore
+    const userIdEdited = req.userId;
     const updateUserService = new UpdateUserService();
-    const response = await updateUserService.execute({id, email, name});
+    const response = await updateUserService.execute({id, email, name, userIdEdited});
     return res.json(response)
 });
 
@@ -41,5 +45,16 @@ userRouter.delete('/:id', authenticate, async (req: Request, res: Response) => {
     const reponse = await deleteUserService.execute(id);
 
     return res.json(reponse);
+});
+
+userRouter.get('/', authenticate, async (req: Request, res: Response) => {
+    /**
+     #swagger.tags = ['Users']
+     #swagger.security = [{ "bearerAuth": [] }]
+     */
+    const getAllUsersService = new GetAllUsersService();
+    const users = await getAllUsersService.execute();
+
+    return res.json(users);
 });
 export default userRouter;

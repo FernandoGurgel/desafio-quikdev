@@ -5,6 +5,7 @@ interface IUpdateUserDTO {
     id: string;
     email?: string;
     name?: string;
+    userIdEdited?: number;
 }
 
 class UpdateUserService {
@@ -24,6 +25,7 @@ class UpdateUserService {
             user.name = userRequest.name;
         }
 
+        user.editorUser= userRequest.userIdEdited ? await repository.findOne(userRequest.userIdEdited) : null;
         const userSave = await repository.save(user);
         return {id: userSave.id, message: 'User updated'};
     }
