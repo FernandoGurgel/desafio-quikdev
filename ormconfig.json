@@ -6,6 +6,7 @@
    "schema": "quickdev",
    "password": "fg2020",
    "database": "quikdev",
+   "synchronize": true,
    "logging": false,
    "entities": [
       "src/entity/**/*.ts"
