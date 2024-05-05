@@ -1,9 +1,9 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class CreateTablePost1714854299474 implements MigrationInterface {
+export class CreateTableComment1714861256800 implements MigrationInterface {
 
-    private postTable = new Table({
-        name: 'post',
+    private commentTable = new Table({
+        name: 'comment',
         columns: [
             {
                 name: 'id',
@@ -13,18 +13,16 @@ export class CreateTablePost1714854299474 implements MigrationInterface {
                 generationStrategy: 'increment',
             },
             {
-                name: 'title',
-                type: 'varchar',
-                length: '100',
-                isNullable: true
-            },
-            {
                 name: 'description',
-                type: 'text',
-                isNullable: true
+                type: 'text'
             },
             {
                 name: 'user_id',
+                type: 'int',
+                isNullable: true
+            },
+            {
+                name: 'post_id',
                 type: 'int',
                 isNullable: true
             }
@@ -34,10 +32,16 @@ export class CreateTablePost1714854299474 implements MigrationInterface {
             referencedTableName: 'user',
             referencedColumnNames: ['id'],
             onDelete: 'CASCADE'
+        }, {
+            columnNames: ['post_id'],
+            referencedTableName: 'post',
+            referencedColumnNames: ['id'],
+            onDelete: 'CASCADE'
         }]
-    })
+    });
+
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.createTable(this.postTable);
+        await queryRunner.createTable(this.commentTable);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
