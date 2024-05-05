@@ -6,7 +6,7 @@ import routes from './routes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerOutput from './config/swagger_output.json';
 import {createConnection} from "typeorm";
-import errorHandler from "./middlewares/errorHandler";
+import errorHandler from "./middlewares/ErrorHandler";
 
 createConnection()
 const app = express();
