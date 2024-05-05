@@ -12,9 +12,9 @@ interface IPostResponseDTO {
 }
 
 class GetAllPostByUserIdService {
-    async execute(userId: number) {
+    async execute() {
         const repository = getRepository(Post);
-        const postsResponse = await repository.find({where: {userId: userId}, relations: ['userId']});
+        const postsResponse = await repository.find({relations: ['userId', 'comments']});
         const mappedPosts: IPostResponseDTO[] = postsResponse.map(post => ({
             id: post.id,
             title: post.title,
@@ -22,7 +22,8 @@ class GetAllPostByUserIdService {
             userName: post.userId.name,
             likes: post.likes,
             dislikes: post.dislikes,
-            counterViews: post.counterViews
+            counterViews: post.counterViews,
+            comments: post.comments
         }));
         return {posts: mappedPosts};
     }

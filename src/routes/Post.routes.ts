@@ -50,14 +50,12 @@ postsRouter.delete('/:id', authenticate, async (req: Request, res: Response) => 
     return res.json(reponse);
 });
 
-postsRouter.get('/', authenticate, async (req: Request, res: Response) => {
+postsRouter.get('/', async (req: Request, res: Response) => {
     /**
      #swagger.tags = ['Posts']
-     #swagger.security = [{ "bearerAuth": [] }]
      */
-    const authorId = req.userId;
     const getAllPostByUserIdService = new GetAllPostByUserIdService();
-    const users = await getAllPostByUserIdService.execute(authorId);
+    const users = await getAllPostByUserIdService.execute();
 
     return res.json(users);
 });

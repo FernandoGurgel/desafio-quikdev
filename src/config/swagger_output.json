@@ -206,12 +206,7 @@
           "200": {
             "description": "OK"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/posts/{id}": {
