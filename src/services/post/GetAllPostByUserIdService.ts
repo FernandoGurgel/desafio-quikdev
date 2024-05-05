@@ -6,6 +6,9 @@ interface IPostResponseDTO {
     title: string;
     description: string;
     userName: string;
+    likes: number;
+    dislikes: number;
+    counterViews: number;
 }
 
 class GetAllPostByUserIdService {
@@ -17,6 +20,9 @@ class GetAllPostByUserIdService {
             title: post.title,
             description: post.description,
             userName: post.userId.name,
+            likes: post.likes,
+            dislikes: post.dislikes,
+            counterViews: post.counterViews
         }));
         return {posts: mappedPosts};
     }

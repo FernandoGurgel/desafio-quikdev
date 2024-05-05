@@ -4,6 +4,7 @@ import CreatePostService from "../services/post/CreatePostService";
 import GetAllPostByUserIdService from "../services/post/GetAllPostByUserIdService";
 import DeletePostByIdAndUserIdService from "../services/post/DeletePostByIdAndUserIdService";
 import UpdatePostByUserIdAndIdService from "../services/post/UpdatePostByUserIdAndIdService";
+import LikeAndDislikeAndCounterViewsPostService from "../services/post/LikeAndDislikePostService";
 
 export const postsRouter = Router();
 
@@ -59,5 +60,40 @@ postsRouter.get('/', authenticate, async (req: Request, res: Response) => {
     const users = await getAllPostByUserIdService.execute(authorId);
 
     return res.json(users);
+});
+
+postsRouter.patch('/:id/like', async (req: Request, res: Response) => {
+    /**
+     #swagger.tags = ['Posts']
+     */
+    const postId = req.params.id;
+
+    const service = new LikeAndDislikeAndCounterViewsPostService();
+    const reponse = await service.execute({postId, type: 'like'});
+
+    return res.json(reponse);
+});
+postsRouter.patch('/:id/dislike', async (req: Request, res: Response) => {
+    /**
+     #swagger.tags = ['Posts']
+     */
+    const postId = req.params.id;
+
+    const service = new LikeAndDislikeAndCounterViewsPostService();
+    const reponse = await service.execute({postId, type: 'dislike'});
+
+    return res.json(reponse);
+});
+
+postsRouter.patch('/:id/views', async (req: Request, res: Response) => {
+    /**
+     #swagger.tags = ['Posts']
+     */
+    const postId = req.params.id;
+
+    const service = new LikeAndDislikeAndCounterViewsPostService();
+    const reponse = await service.execute({postId, type: 'counterViews'});
+
+    return res.json(reponse);
 });
 export default postsRouter;
